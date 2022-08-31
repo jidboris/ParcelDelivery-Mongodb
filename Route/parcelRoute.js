@@ -5,10 +5,16 @@ const { mongoose } = require('mongoose');
 const userController = require('../controllers/user');
 router.use(express.json())
 
-async function connect() {
-    await mongoose.connect('mongodb://localhost:27017')
-}
-connect().then(() => console.log('connected to database')).catch((error) => { console.log('Error:', error()) })
+const uri = 'mongodb://localhost:27017/taskOne'
+mongoose
+    .connect(uri, { useNewUrlParser: false, useUnifiedTopology: false })
+    .then(() => console.log("Database Connected"))
+    .catch((err) => {console.log(err)});
+// async function connect() {
+//     await mongoose.connect('mongodb://localhost:27017')
+// }
+// connect().then(() => console.log('connected to database'))
+// //.catch((error) => { console.log('Error:', error()) })
 
 router.post('/userSignup', userController.create);
 router.post('/login', userController.authenticate)

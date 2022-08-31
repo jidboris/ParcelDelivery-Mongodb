@@ -1,4 +1,4 @@
-const { mongoose } = require('mongoose');
+const {mongoose} = require('mongoose');
 const parcelModel = new mongoose.Schema({
     Item: {
         type: String, required: true, uppercase: true
